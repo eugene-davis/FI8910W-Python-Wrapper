@@ -11,7 +11,6 @@ class FI8910W_wrapper:
     # URL to camera
     url = ""
 
-    # Constructor - sets the username and password
     def __init__(self, url, user, password):
         """
         Constructor, it sets the url, user and password for the camera
@@ -24,7 +23,6 @@ class FI8910W_wrapper:
         self.user = user
         self.password = password
 
-    # Creates the parameters key-value array for URL
     def __getParams__(self, command):
         """
         Generates the parameters to send to the camera, returns them in an associative array
