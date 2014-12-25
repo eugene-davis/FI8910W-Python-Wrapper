@@ -13,29 +13,50 @@ class FI8910W_wrapper:
 
     # Constructor - sets the username and password
     def __init__(self, url, user, password):
+        """
+        Constructor, it sets the url, user and password for the camera
+        :param url String URL/IP address of the camera
+        :param user String administrative username for the camera
+        :param password String password that goes with the administrative user
+        :return;
+        """
         self.url = url
         self.user = user
         self.password = password
 
     # Creates the parameters key-value array for URL
-    def __genParams(self, command):
+    def __getParams__(self, command):
+        """
+        Generates the parameters to send to the camera, returns them in an associative array
+        """
         params = {"user":self.user, "pwd":self.password, "command":command}
         return params
 
-    # Stops camera movement
     def stop(self):
+        """
+        Sends the command to stop camera movement
+        :return;
+        """
+
         # Stop command is 1
-        params = self.__genParams(1)
+        params = self.__getParams__(1)
         requests.get(self.url, params=params)
 
-    # Moves the camera left
     def left(self):
+        """
+        Sends the command to turn the camera left
+        :return;
+        """
+
         # Left is command number 6
-        params = self.__genParams(6)
+        params = self.__getParams__(6)
         requests.get(self.url, params=params)
 
-    # Moves the camera right
     def right(self):
-        # Left command is 4
-        params = self.__genParams(4)
+        """
+        Sends the command to turn the camera right
+        :return:
+        """
+        # Right command is 4
+        params = self.__getParams__(4)
         requests.get(self.url, params=params)
