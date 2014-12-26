@@ -58,7 +58,6 @@ class FI8910W_wrapper:
         """
         Generic method to run a command, should generally only be used by other methods
         :param command_num:
-        :return:
         """
 
         params = self.__get_params__(command_num)
@@ -98,7 +97,7 @@ class FI8910W_wrapper:
         Sends the command to turn the camera up
         :return:
         """
-        # Right command is 0
+        # Up command is 0
         self.command(0)
 
     def down(self):
@@ -106,5 +105,33 @@ class FI8910W_wrapper:
         Sends the command to turn the camera down
         :return:
         """
-        # Right command is 2
+        # Down command is 2
         self.command(2)
+
+    def up_right(self):
+        """
+        Sends the command to turn the camera up and to the right
+        :return:
+        """
+        self.command(90)
+
+    def down_right(self):
+        """
+        Sends the command to turn the camera down and to the right
+        :return:
+        """
+        self.command(92)
+
+    def down_left(self):
+        """
+        Sends the command to turn the camera down and to the right
+        :return:
+        """
+        self.command(93)
+
+    def up_left(self):
+        """
+        Sends the command to turn the camera down and to the right
+        :return:
+        """
+        self.command(91)
