@@ -30,6 +30,16 @@ class FI8910W_wrapper:
         params = {"user":self.user, "pwd":self.password, "command":command}
         return params
 
+    def __check_status__(self, request):
+        """
+        Checks to see if the return status from the camera is OK
+        :param request:
+        :return:
+        """
+
+        if (request.status_code != requests.codes.ok):
+            request.raise_for_status()
+
     def stop(self):
         """
         Sends the command to stop camera movement
@@ -37,8 +47,11 @@ class FI8910W_wrapper:
         """
 
         # Stop command is 1
-        params = self.__getParams__(1)
-        requests.get(self.url, params=params)
+        params = self.__get_params__(1)
+        request = requests.get(self.url, params=params)
+
+        self.__check_status__(request)
+
 
     def left(self):
         """
@@ -47,8 +60,10 @@ class FI8910W_wrapper:
         """
 
         # Left is command number 6
-        params = self.__getParams__(6)
-        requests.get(self.url, params=params)
+        params = self.__get_params__(6)
+        request = requests.get(self.url, params=params)
+
+        self.__check_status__(request)
 
     def right(self):
         """
@@ -56,5 +71,7 @@ class FI8910W_wrapper:
         :return:
         """
         # Right command is 4
-        params = self.__getParams__(4)
-        requests.get(self.url, params=params)
+        params = self.__get_params__(4)
+        request = requests.get(self.url, params=params)
+
+        self.__check_status__(request)
