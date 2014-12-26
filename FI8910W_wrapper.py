@@ -142,3 +142,17 @@ class FI8910W_wrapper:
         :return:
         """
         self.command(25)
+
+    def ir_on(self):
+        """
+        Sends the command to turn on IR
+        :return:
+        """
+        self.command(95)
+
+    def ir_off(self):
+        """
+        Sends the command to turn off IR
+        :return:
+        """
+        self.command(94)
