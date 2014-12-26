@@ -184,3 +184,16 @@ class FI8910W_wrapper:
         :return:
         """
         self.command(29)
+
+    def set_preset(self, preset_num):
+        """
+        Sends the command to set a preset.
+        Each of the eight presets has a different number, so this function maps 1-8 to the correct command number
+        :param preset_num:
+        :return:
+        """
+
+        # Dictionary to map preset number to command number
+        preset_commands = {"1":"30", "2":"32", "3":"35", "4":"37", "5":"38", "6":"41", "7":"43", "8":"45"}
+
+        self.command(preset_commands[preset_num])
