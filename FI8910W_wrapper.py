@@ -54,6 +54,18 @@ class FI8910W_wrapper:
         if (request.status_code != requests.codes.ok):
             request.raise_for_status()
 
+    def command(self, command_num):
+        """
+        Generic method to run a command, should generally only be used by other methods
+        :param command_num:
+        :return:
+        """
+
+        params = self.__get_params__(command_num)
+        request = requests.get(self.control_url, params=params)
+
+        self.__check_status__(request)
+
     def stop(self):
         """
         Sends the command to stop camera movement
@@ -61,10 +73,7 @@ class FI8910W_wrapper:
         """
 
         # Stop command is 1
-        params = self.__get_params__(1)
-        request = requests.get(self.control_url, params=params)
-
-        self.__check_status__(request)
+        self.command(1)
 
 
     def left(self):
@@ -74,10 +83,7 @@ class FI8910W_wrapper:
         """
 
         # Left is command number 6
-        params = self.__get_params__(6)
-        request = requests.get(self.control_url, params=params)
-
-        self.__check_status__(request)
+        self.command(6)
 
     def right(self):
         """
@@ -85,10 +91,7 @@ class FI8910W_wrapper:
         :return:
         """
         # Right command is 4
-        params = self.__get_params__(4)
-        request = requests.get(self.control_url, params=params)
-
-        self.__check_status__(request)
+        self.command(4)
 
     def up(self):
         """
@@ -96,10 +99,7 @@ class FI8910W_wrapper:
         :return:
         """
         # Right command is 0
-        params = self.__get_params__(0)
-        request = requests.get(self.control_url, params=params)
-
-        self.__check_status__(request)
+        self.command(0)
 
     def down(self):
         """
@@ -107,7 +107,4 @@ class FI8910W_wrapper:
         :return:
         """
         # Right command is 2
-        params = self.__get_params__(2)
-        request = requests.get(self.control_url, params=params)
-
-        self.__check_status__(request)
+        self.command(2)
