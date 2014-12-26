@@ -194,6 +194,19 @@ class FI8910W_wrapper:
         """
 
         # Dictionary to map preset number to command number
-        preset_commands = {"1":"30", "2":"32", "3":"35", "4":"37", "5":"38", "6":"41", "7":"43", "8":"45"}
+        preset_commands = {"1":"30", "2":"32", "3":"34", "4":"36", "5":"38", "6":"40", "7":"42", "8":"44"}
+
+        self.command(preset_commands[preset_num])
+
+    def go_preset(self, preset_num):
+        """
+        Sends the command to change to a preset.
+        Each of the eight presets has a different number, so this function maps 1-8 to the correct command number
+        :param preset_num:
+        :return:
+        """
+
+        # Dictionary to map preset number to command number
+        preset_commands = {"1":"31", "2":"33", "3":"35", "4":"37", "5":"39", "6":"41", "7":"43", "8":"45"}
 
         self.command(preset_commands[preset_num])
