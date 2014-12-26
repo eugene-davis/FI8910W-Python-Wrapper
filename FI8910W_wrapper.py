@@ -10,6 +10,12 @@ class FI8910W_wrapper:
     password = ""
     # URL to camera
     url = ""
+    # Full control URL
+    control_url = ""
+    # Resource to check user
+    check_user_resource = "/check_user2.cgi"
+    # URL for control operations
+    control_resource = "/decoder_control.cgi"
 
     def __init__(self, url, user, password):
         """
@@ -22,6 +28,14 @@ class FI8910W_wrapper:
         self.url = url
         self.user = user
         self.password = password
+        self.control_url = self.url + self.control_resource
+
+        # Check that URL and credentials are working
+        params = {"user":self.user, "pwd":self.password}
+        request = requests.get(self.url + self.check_user_resource, params=params)
+
+        self.__check_status__(request)
+
 
     def __get_params__(self, command):
         """
@@ -48,7 +62,7 @@ class FI8910W_wrapper:
 
         # Stop command is 1
         params = self.__get_params__(1)
-        request = requests.get(self.url, params=params)
+        request = requests.get(self.control_url, params=params)
 
         self.__check_status__(request)
 
@@ -61,7 +75,7 @@ class FI8910W_wrapper:
 
         # Left is command number 6
         params = self.__get_params__(6)
-        request = requests.get(self.url, params=params)
+        request = requests.get(self.control_url, params=params)
 
         self.__check_status__(request)
 
@@ -72,6 +86,6 @@ class FI8910W_wrapper:
         """
         # Right command is 4
         params = self.__get_params__(4)
-        request = requests.get(self.url, params=params)
+        request = requests.get(self.control_url, params=params)
 
         self.__check_status__(request)
