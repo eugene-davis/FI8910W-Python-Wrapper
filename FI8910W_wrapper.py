@@ -156,3 +156,31 @@ class FI8910W_wrapper:
         :return:
         """
         self.command(94)
+
+    def vert_patrol(self):
+        """
+        Sends the command to do a vertical patrol
+        :return:
+        """
+        self.command(26)
+
+    def stop_vert_patrol(self):
+        """
+        Sends the command to stop doing the vertical patrol
+        :return:
+        """
+        self.command(27)
+
+    def horiz_patrol(self):
+        """
+        Sends the command to do a horizontal patrol
+        :return:
+        """
+        self.command(28)
+
+    def stop_horiz_patrol(self):
+        """
+        Sends the command to stop doing a horizontal patrol
+        :return:
+        """
+        self.command(29)
