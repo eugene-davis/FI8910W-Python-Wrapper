@@ -135,3 +135,10 @@ class FI8910W_wrapper:
         :return:
         """
         self.command(91)
+
+    def center(self):
+        """
+        Sends the command to center the camera
+        :return:
+        """
+        self.command(25)
