@@ -23,7 +23,7 @@ class FI8910W_wrapper:
         self.user = user
         self.password = password
 
-    def __getParams__(self, command):
+    def __get_params__(self, command):
         """
         Generates the parameters to send to the camera, returns them in an associative array
         """
