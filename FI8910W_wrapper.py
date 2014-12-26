@@ -89,3 +89,25 @@ class FI8910W_wrapper:
         request = requests.get(self.control_url, params=params)
 
         self.__check_status__(request)
+
+    def up(self):
+        """
+        Sends the command to turn the camera up
+        :return:
+        """
+        # Right command is 0
+        params = self.__get_params__(0)
+        request = requests.get(self.control_url, params=params)
+
+        self.__check_status__(request)
+
+    def down(self):
+        """
+        Sends the command to turn the camera down
+        :return:
+        """
+        # Right command is 2
+        params = self.__get_params__(2)
+        request = requests.get(self.control_url, params=params)
+
+        self.__check_status__(request)
