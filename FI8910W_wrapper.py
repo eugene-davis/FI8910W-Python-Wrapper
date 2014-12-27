@@ -218,3 +218,10 @@ class FI8910W_wrapper:
         preset_commands = {"1":"31", "2":"33", "3":"35", "4":"37", "5":"39", "6":"41", "7":"43", "8":"45"}
 
         self.command(preset_commands[str(preset_num)])
+
+    def get_pic_url(self):
+        """
+        Returns the image stream's URL. This camera returns it as a constantly updating image.
+        :return: String
+        """
+        return self.url + "videostream.cgi?user=admin&pwd="
