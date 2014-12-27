@@ -200,7 +200,7 @@ class FI8910W_wrapper:
         # Dictionary to map preset number to command number
         preset_commands = {"1":"30", "2":"32", "3":"34", "4":"36", "5":"38", "6":"40", "7":"42", "8":"44"}
 
-        self.command(preset_commands[preset_num])
+        self.command(preset_commands[str(preset_num)])
 
     def go_preset(self, preset_num):
         """
@@ -217,4 +217,4 @@ class FI8910W_wrapper:
         # Dictionary to map preset number to command number
         preset_commands = {"1":"31", "2":"33", "3":"35", "4":"37", "5":"39", "6":"41", "7":"43", "8":"45"}
 
-        self.command(preset_commands[preset_num])
+        self.command(preset_commands[str(preset_num)])
