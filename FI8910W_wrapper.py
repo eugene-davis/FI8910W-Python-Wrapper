@@ -193,6 +193,10 @@ class FI8910W_wrapper:
         :return:
         """
 
+        # Check that preset number is in range
+        if int(preset_num) < 1 or int(preset_num) > 8:
+            raise ValueError('Preset number not in valid range (1-8')
+
         # Dictionary to map preset number to command number
         preset_commands = {"1":"30", "2":"32", "3":"34", "4":"36", "5":"38", "6":"40", "7":"42", "8":"44"}
 
@@ -205,6 +209,10 @@ class FI8910W_wrapper:
         :param preset_num:
         :return:
         """
+
+        # Check that preset number is in range
+        if int(preset_num) < 1 or int(preset_num) > 8:
+            raise ValueError('Preset number not in valid range (1-8')
 
         # Dictionary to map preset number to command number
         preset_commands = {"1":"31", "2":"33", "3":"35", "4":"37", "5":"39", "6":"41", "7":"43", "8":"45"}
