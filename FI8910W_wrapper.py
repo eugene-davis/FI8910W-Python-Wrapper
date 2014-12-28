@@ -225,3 +225,7 @@ class FI8910W_wrapper:
         :return: String
         """
         return self.url + "/snapshot.cgi?user=admin&pwd="
+
+    def get_stream_url(self):
+
+        return self.url + "/videostream.cgi?user=admin&pwd="
