@@ -224,8 +224,8 @@ class FI8910W_wrapper:
         Returns the image stream's URL. This camera returns it as a constantly updating image.
         :return: String
         """
-        return self.url + "/snapshot.cgi?user=admin&pwd="
+        return self.url + "/snapshot.cgi?user=" + self.user + "&pwd=" + self.password
 
     def get_stream_url(self):
 
-        return self.url + "/videostream.cgi?user=admin&pwd="
+        return self.url + "/videostream.cgi?user=" + self.user + "&pwd=" + self.password
