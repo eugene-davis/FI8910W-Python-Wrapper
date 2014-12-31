@@ -30,6 +30,9 @@ class FI8910W_wrapper:
         self.password = password
         self.control_url = self.url + self.control_resource
 
+        # Max number of presets
+        self.__num_presets = 8
+
         # Check that URL and credentials are working
         params = {"user":self.user, "pwd":self.password}
         request = requests.get(self.url + self.check_user_resource, params=params)
@@ -211,7 +214,7 @@ class FI8910W_wrapper:
         """
 
         # Check that preset number is in range
-        if int(preset_num) < 1 or int(preset_num) > 8:
+        if int(preset_num) < 1 or int(preset_num) > self.__num_presets:
             raise ValueError('Preset number not in valid range (1-8')
 
         # Dictionary to map preset number to command number
@@ -232,3 +235,10 @@ class FI8910W_wrapper:
         :return:
         """
         return self.url + "/videostream.cgi?user=" + self.user + "&pwd=" + self.password
+
+    def get_num_presets(self):
+        """
+        Returns the number of presets
+        :return: Integer
+        """
+        return self.__num_presets
