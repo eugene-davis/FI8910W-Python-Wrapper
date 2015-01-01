@@ -17,7 +17,7 @@ class FI8910W_wrapper:
     # URL for control operations
     control_resource = "/decoder_control.cgi"
 
-    def __init__(self, url, user, password):
+    def __init__(self, url, user, password, short_name):
         """
         Constructor, it sets the url, user and password for the camera
         :param url String URL/IP address of the camera
@@ -29,6 +29,7 @@ class FI8910W_wrapper:
         self.user = user
         self.password = password
         self.control_url = self.url + self.control_resource
+        self.short_name = short_name
 
         # Since the counter is returning the actual preset value it is 1 indexed
         self.preset_counter = 1
@@ -42,6 +43,12 @@ class FI8910W_wrapper:
 
         self.__check_status__(request)
 
+    def get_short_name(self):
+        """
+        Gets the short name for the camera
+        :return String:
+        """
+        return self.short_name
 
     def __get_params__(self, command):
         """
@@ -261,7 +268,7 @@ class FI8910W_wrapper:
         # Check that the current preset is less than the max presets
         if self.preset_counter < self.__num_presets - 1:
             self.preset_counter += 1
-            return self.preset_counter
+            return self.preset_counter - 1
         else: # Reset back to 1 (the first preset
             self.preset_counter = 1
             return self.preset_counter
