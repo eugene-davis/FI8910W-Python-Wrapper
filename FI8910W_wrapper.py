@@ -30,6 +30,9 @@ class FI8910W_wrapper:
         self.password = password
         self.control_url = self.url + self.control_resource
 
+        # Since the counter is returning the actual preset value it is 1 indexed
+        self.preset_counter = 1
+
         # Max number of presets
         self.__num_presets = 8
 
@@ -242,3 +245,23 @@ class FI8910W_wrapper:
         :return: Integer
         """
         return self.__num_presets
+
+    def __iter__(self):
+        """
+        Allows the camera's current preset number to be returned via an iterator
+        :return:
+        """
+        return self
+
+    def next(self):
+        """
+        Returns the next preset number to iterate on
+        :return: Integer
+        """
+        # Check that the current preset is less than the max presets
+        if self.preset_counter < self.__num_presets - 1:
+            self.preset_counter += 1
+            return self.preset_counter
+        else: # Reset back to 1 (the first preset
+            self.preset_counter = 1
+            return self.preset_counter
